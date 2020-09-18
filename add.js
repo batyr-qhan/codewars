@@ -1,5 +1,7 @@
 function add (a, b) {
 
+
+
   function toFixed (x) {
     if (Math.abs(x) < 1.0) {
       var e = parseInt(x.toString().split('e-')[1])
@@ -42,5 +44,51 @@ function add (a, b) {
 }
 
 console.log(add('63829983432984289347293874', '90938498237058927340892374089'))
+
+function convert (string) {
+  let newArr = string.split('').map(item => Number(item))
+  return newArr
+}
+
+console.log(convert('123123123123123123123123123'))
+
+function addStrings(str1, str2){
+  str1a = str1.split('').reverse();
+  str2a = str2.split('').reverse();
+  let output = '';
+  let longer = Math.max(str1.length, str2.length);
+  let carry = false;
+  for (let i = 0; i < longer; i++) {
+    let result
+    if (str1a[i] && str2a[i]) {
+      result = parseInt(str1a[i]) + parseInt(str2a[i]);
+
+    } else if (str1a[i] && !str2a[i]) {
+      result = parseInt(str1a[i]);
+
+    } else if (!str1a[i] && str2a[i]) {
+      result = parseInt(str2a[i]);
+    }
+
+    if (carry) {
+      result += 1;
+      carry = false;
+    }
+    if(result >= 10) {
+      carry = true;
+      output += result.toString()[1];
+    }else {
+      output += result.toString();
+    }
+  }
+  output = output.split('').reverse().join('');
+
+  if(carry) {
+    output = '1' + output;
+  }
+  return output;
+}
+
+console.log(addStrings('435345345345345345345345322', '2567563441232465684352'))
 
 
